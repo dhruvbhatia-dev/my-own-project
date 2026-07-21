@@ -5,7 +5,7 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 # Configure MySQL from environment variables
-app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST', 'localhost')
+app.config['MYSQL_HOST'] = os.environ.get('MYSQL_HOST', 'mysql')
 app.config['MYSQL_USER'] = os.environ.get('MYSQL_USER', 'default_user')
 app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQL_PASSWORD', 'default_password')
 app.config['MYSQL_DB'] = os.environ.get('MYSQL_DB', 'default_db')
@@ -32,10 +32,13 @@ def hello():
     messages = cur.fetchall()
     cur.close()
     return render_template('index.html', messages=messages)
+@app.route('/health')
+def health():
+    return "OK", 200
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    new_message = request.form.get('new_message')
+    new_message = request.form.get('message')
     cur = mysql.connection.cursor()
     cur.execute('INSERT INTO messages (message) VALUES (%s)', [new_message])
     mysql.connection.commit()

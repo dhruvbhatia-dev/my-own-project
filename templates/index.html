@@ -1,230 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prashant | Flask App 🚀</title>
+    <title>DevOps Portfolio | Flask App</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
+        /* Basic Styling to match the dark theme of the image */
         body {
-            background: linear-gradient(160deg, #0C0D16, #1A1C2B);
-            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text */
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            height: 100vh;
         }
 
-        /* Flex container for profile + content */
-        .container {
+        .main-container {
+            background-color: #1e1e1e; /* Darker card background */
+            border-radius: 12px;
+            padding: 40px;
+            width: 600px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             display: flex;
-            flex-direction: row;
-            max-width: 1050px;
-            width: 100%;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            flex-direction: column;
+            gap: 20px;
         }
 
-        /* Left side: profile photo */
-        .profile-photo {
-            flex: 0 0 200px;
-            margin-right: 30px;
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .profile-photo img {
-            width: 100%;
+        .placeholder-photo {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 3px solid #5599FF;
-            box-shadow: 0 4px 15px rgba(85, 153, 255, 0.5);
-        }
-
-        /* Right side: content */
-        .content {
-            flex: 1;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #5599FF;
-            margin-bottom: 8px;
-        }
-
-        .header p {
-            font-size: 1rem;
-            color: #ccc;
-            margin-bottom: 15px;
-        }
-
-        .about {
-            margin-bottom: 20px;
-            padding: 10px 15px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .about h2 {
-            font-size: 1.3rem;
-            color: #5599FF;
-            margin-bottom: 8px;
-        }
-
-        .about p {
-            font-size: 0.95rem;
-            color: #ddd;
-            line-height: 1.5;
-        }
-
-        .messages {
-            margin-bottom: 15px;
-            padding: 12px;
-            background: rgba(85, 153, 255, 0.08);
-            border: 1px solid rgba(85, 153, 255, 0.2);
-            border-radius: 12px;
-            max-height: 200px;
-            overflow-y: auto;
-            text-align: left;
-        }
-
-        .messages p {
-            padding: 8px;
-            background: rgba(255, 255, 255, 0.07);
-            border-radius: 8px;
-            margin-bottom: 6px;
-            font-size: 0.95rem;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid rgba(85, 153, 255, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            border: 2px solid #3498db; /* Blue ring */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
             text-align: center;
+            overflow: hidden;
         }
 
-        input[type="text"]:focus {
-            border-color: #5599FF;
-            box-shadow: 0 0 12px rgba(85, 153, 255, 0.6);
-            outline: none;
+        .profile-text h1 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            color: #fff;
         }
 
-        input[type="submit"] {
+        .profile-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #b0b0b0;
+        }
+
+        .about-section {
+            background-color: #2c2c2c;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .about-section h2 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .about-section p {
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #e0e0e0;
+        }
+
+        .highlight {
+            color: #f1c40f; /* Yellow highlight like 'Prashant' in image */
+            font-weight: bold;
+        }
+
+        /* Input Fields & Button Styling */
+        .input-field, textarea {
             width: 100%;
             padding: 12px;
-            background: #5599FF;
-            color: #ffffff;
+            margin-bottom: 15px;
+            background-color: #3a3a3a;
             border: none;
-            border-radius: 8px;
-            cursor: pointer;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box; /* Important for padding */
+        }
+
+        .input-field::placeholder, textarea::placeholder {
+            color: #999;
+        }
+
+        .send-btn {
+            background-color: #3498db; /* Blue button */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
             font-size: 16px;
-            transition: all 0.3s ease;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
         }
 
-        input[type="submit"]:hover {
-            background: #417ad6;
-            box-shadow: 0 0 15px rgba(85, 153, 255, 0.6);
-            transform: translateY(-2px);
+        .send-btn:hover {
+            background-color: #2980b9;
         }
 
-        /* Responsive */
-        @media (max-width: 800px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .profile-photo {
-                margin-right: 0;
-                margin-bottom: 20px;
-                flex: 0 0 auto;
-            }
-        }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <!-- Profile photo -->
-        <div class="profile-photo">
-            <img src="1.png" alt="Prashant Photo">
+
+    <div class="main-container">
+        <!-- Profile Header -->
+        <div class="profile-section">
+            <div class="placeholder-photo">
+                Prashant Photo<br>(Sample)
+            </div>
+            <div class="profile-text">
+                <!-- CHANGE THIS: Your Name and Title -->
+                <h1>[Dhruv Bhatia]</h1>
+                <p>[Student | Aspiring Cloud & DevOps Engineer]</p>
+            </div>
         </div>
 
-        <!-- Content -->
-        <div class="content">
-            <div class="header">
-                <h1>Prashant Gohil | DevOps Enthusiast</h1>
-                <p>Student | Aspiring Cloud & DevOps Engineer</p>
-            </div>
+        <!-- About Me Section -->
+        <div class="about-section">
+            <h2>About Me</h2>
+            <!-- CHANGE THIS: Your 'About Me' text -->
+            <p>
+                Hi, main <span class="highlight">[Dhruv Bhatia]</span> hoon, ek DevOps enthusiast jo cloud technology aur automation seekh raha hai.
+            </p>
+            <p>
+                <span class="highlight">Project:</span> Yeh ek simple 2-Tier Flask application hai jise maine Docker Compose ke zariye manage kiya hai aur AWS par deploy karne ki practice kar raha hoon. Source code GitHub par hai aur CI/CD pipeline ke liye Jenkins integrate kiya hai.
+            </p>
+        </div>
 
-            <div class="about">
-                <h2>About Me</h2>
-                <p>Hi, I'm <b>Prashant</b> 👋, a student and aspiring Cloud & DevOps engineer.</p>
-                <p style="margin-top:10px;">
-                    <b>Project:</b> I have deployed a 2-tier Flask application (Flask + MySQL) on AWS EC2 using Docker.  
-                    I used Docker Compose to manage both containers with volumes and a custom network.  
-                    The source code is hosted on GitHub, and Jenkins is integrated to set up a CI/CD pipeline for automated deployment.
-                </p>
-            </div>
-
-            <div class="messages">
-                {% for message in messages %}
-                    <p>{{ message[0] }}</p>
+        <!-- Message Input Section (This requires backend logic in app.py to work) -->
+        <div class="message-section">
+            <!-- Agar app.py me /submit route hai, toh action attribute use hoga -->
+            <form action="/submit" method="POST">
+                <input type="text" name="subject" class="input-field" placeholder="Subject (e.g., hi)">
+                <textarea name="message" class="input-field" rows="3" placeholder="Type your message..."></textarea>
+                <button type="submit" class="send-btn">Send</button>
+                <!-- Messages List Display -->
+                <div class="messages-list" style="margin-bottom: 20px;">
+                <h3 style="font-size: 16px; color: #fff; margin-bottom: 10px;">Previous Messages:</h3>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                {% for msg in messages %}
+                <li style="background-color: #3a3a3a; padding: 10px; margin-bottom: 8px; border-radius: 6px; font-size: 14px;">
+                {{ msg[0] }}
+                </li>
                 {% endfor %}
-            </div>
-
-            <form id="messageForm">
-                <input type="text" name="new_message" placeholder="Type your message..." required>
-                <input type="submit" value="Send">
+                </ul>
+                </div>
             </form>
         </div>
+
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#messageForm").on("submit", function(event) {
-                event.preventDefault();
-                let messageInput = $("input[name='new_message']");
-                let message = messageInput.val().trim();
-
-                if (message === "") {
-                    alert("Message cannot be empty!");
-                    return;
-                }
-
-                $.ajax({
-                    url: "/submit",
-                    type: "POST",
-                    data: { new_message: message },
-                    success: function(response) {
-                        if (response && response.message) {
-                            $(".messages").append("<p>" + response.message + "</p>");
-                            messageInput.val("");
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
