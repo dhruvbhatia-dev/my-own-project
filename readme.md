@@ -24,9 +24,9 @@ This document outlines the step-by-step process for deploying a 2-tier web appli
 
 ### **2. Architecture Diagram**
 
-![Architecture Diagram](architecture-diagram.png)
+![Architecture Diagram](diagrams/architecture-diagram.png)
 
----
+--- 
 
 ### **3. Step 1: AWS EC2 Instance Preparation**
 
@@ -36,7 +36,7 @@ This document outlines the step-by-step process for deploying a 2-tier web appli
     * Select the **t2.micro** instance type for free-tier eligibility.
     * Create and assign a new key pair for SSH access.
 
-    ![EC2 Instance Launch](ec2-instance-launch.png)
+    ![EC2 Instance Launch](diagrams/ec2-instance-launch.png)
 
 2. **Configure Security Group:**
      * **Create a security group with the following inbound rules:**
@@ -45,7 +45,7 @@ This document outlines the step-by-step process for deploying a 2-tier web appli
         * **Type:** Custom TCP, **Protocol:** TCP, **Port:** 5000 (for Flask), **Source:** Anywhere (0.0.0.0/0)
         * **Type:** Custom TCP, **Protocol:** TCP, **Port:** 8080 (for Jenkins), **Source:** Anywhere (0.0.0.0/0)
     
-    ![Security Groups](Security-Groups.png)
+    ![Security Groups](diagrams/Security-Groups.png)
 
 3.  **Connect to EC2 Instance:**
     * Use SSH to connect to the instance's public IP address.
@@ -114,7 +114,7 @@ This document outlines the step-by-step process for deploying a 2-tier web appli
     sudo systemctl restart jenkins
     ```
 
-    ![Admin User](admin-user.png)    
+    ![Admin User](diagrams/admin-user.png)    
 
 ### **6. Step 4: GitHub Repository Configuration**
 
@@ -247,7 +247,7 @@ pipeline {
     * Enter your GitHub repository URL.
     * Verify the **Script Path** is `Jenkinsfile`.
 
-![Jenkins Pipeline](jenkins-pipeline.png)
+![Jenkins Pipeline](diagrams/jenkins-pipeline.png)
 
 3. **Configure Github Webhook(Automated Triggers):**
    * Install the Github Integration plugin in Jenkins.
@@ -261,7 +261,7 @@ pipeline {
     * Click **Build Now** to trigger the pipeline manually for the first time.
     * Monitor the execution through the **Stage View** or **Console Output**.
 
-![Jenkins Pipeline](pipeline-run.png)
+![Jenkins Pipeline](diagrams/pipeline-run.png)
 
 5. **Verify Deployment:**
     * After a successful build, your Flask application will be accessible at `http://<your-ec2-public-ip>:5000`.
@@ -272,7 +272,7 @@ The CI/CD pipeline is now fully operational and automated. Any git push to the m
 
 ### **9. Infrastructure Diagram**
 
-![Infrastructure Diagram](Infrastructure-Diagram.png)
+![Infrastructure Diagram](diagrams/Infrastructure-Diagram.png)
 
 
 
