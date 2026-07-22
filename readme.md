@@ -1,10 +1,10 @@
-# Devops Project Report: # DevOps Project Report: Automated CI/CD Pipeline for a 2-Tier Flask Application on AWS
+# Devops Project Report: Automated CI/CD Pipeline for a 2-Tier Flask Application on AWS
 
 **Author:** Dhruv Bhatia
 
 ---
 
-##**Table of Contents**
+## **Table of Contents**
 1. [Project Overview](#1-project-overview)
 2. [Architecture Diagram](#2-architecture-diagram)
 3. [Step 1: AWS EC2 Instance Preparation](#3-step-1-aws-ec2-instance-preparation)
