@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Portfolio | Flask App</title>
+    <style>
+        /* Basic Styling to match the dark theme of the image */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .main-container {
+            background-color: #1e1e1e; /* Darker card background */
+            border-radius: 12px;
+            padding: 40px;
+            width: 600px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .placeholder-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #3498db; /* Blue ring */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .profile-text h1 {
+            margin: 0 0 5px 0;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .profile-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #b0b0b0;
+        }
+
+        .about-section {
+            background-color: #2c2c2c;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .about-section h2 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .about-section p {
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #e0e0e0;
+        }
+
+        .highlight {
+            color: #f1c40f; /* Yellow highlight like 'Prashant' in image */
+            font-weight: bold;
+        }
+
+        /* Input Fields & Button Styling */
+        .input-field, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background-color: #3a3a3a;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box; /* Important for padding */
+        }
+
+        .input-field::placeholder, textarea::placeholder {
+            color: #999;
+        }
+
+        .send-btn {
+            background-color: #3498db; /* Blue button */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .send-btn:hover {
+            background-color: #2980b9;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Profile Header -->
+        <div class="profile-section">
+            <div class="placeholder-photo">
+                Prashant Photo<br>(Sample)
+            </div>
+            <div class="profile-text">
+                <!-- CHANGE THIS: Your Name and Title -->
+                <h1>[Dhruv Bhatia]</h1>
+                <p>[Student | Aspiring Cloud & DevOps Engineer]</p>
+            </div>
+        </div>
+
+        <!-- About Me Section -->
+        <div class="about-section">
+            <h2>About Me</h2>
+            <!-- CHANGE THIS: Your 'About Me' text -->
+            <p>
+                Hi, main <span class="highlight">[Dhruv Bhatia]</span> hoon, ek DevOps enthusiast jo cloud technology aur automation seekh raha hai.
+            </p>
+            <p>
+                <span class="highlight">Project:</span> Yeh ek simple 2-Tier Flask application hai jise maine Docker Compose ke zariye manage kiya hai aur AWS par deploy karne ki practice kar raha hoon. Source code GitHub par hai aur CI/CD pipeline ke liye Jenkins integrate kiya hai.
+            </p>
+        </div>
+
+        <!-- Message Input Section (This requires backend logic in app.py to work) -->
+        <div class="message-section">
+            <!-- Agar app.py me /submit route hai, toh action attribute use hoga -->
+            <form action="/submit" method="POST">
+                <input type="text" name="subject" class="input-field" placeholder="Subject (e.g., hi)">
+                <textarea name="message" class="input-field" rows="3" placeholder="Type your message..."></textarea>
+                <button type="submit" class="send-btn">Send</button>
+                <!-- Messages List Display -->
+                <div class="messages-list" style="margin-bottom: 20px;">
+                <h3 style="font-size: 16px; color: #fff; margin-bottom: 10px;">Saved Messages:</h3>
+                <ul style="list-style-type: none; padding: 0; margin: 0;">
+                {% for msg in messages %}
+                <li style="background-color: #3a3a3a; padding: 10px; margin-bottom: 8px; border-radius: 6px; font-size: 14px;">
+                {{ msg[0] }}
+                </li>
+                {% endfor %}
+                </ul>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>
